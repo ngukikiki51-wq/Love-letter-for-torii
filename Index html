@@ -1,0 +1,114 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Love Letter ❤️</title>
+
+<style>
+body{
+    margin:0;
+    background:linear-gradient(to bottom,#ff9a9e,#fad0c4);
+    font-family: "Comic Sans MS", cursive;
+    text-align:center;
+    color:white;
+}
+
+h1{
+    margin-top:30px;
+}
+
+.container{
+    max-width:600px;
+    margin:auto;
+}
+
+img{
+    width:260px;
+    border-radius:20px;
+    margin-top:20px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.3);
+}
+
+.message{
+    font-size:22px;
+    margin:30px;
+    min-height:80px;
+}
+
+.heart{
+    position:fixed;
+    top:-10px;
+    color:red;
+    animation:fall 6s linear infinite;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(100vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>💖 A Love Letter For You 💖</h1>
+
+<div class="container">
+
+<img id="photo" src="photo1.jpg">
+
+<div class="message" id="text"></div>
+
+</div>
+
+<audio autoplay loop>
+<source src="love-music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+// Typing love message
+let message = "My love... Every moment with you feels magical. Your smile brightens my world and your voice calms my heart. I’m grateful for you every day. I love you forever ❤️";
+let i = 0;
+
+function typing(){
+ if(i < message.length){
+  document.getElementById("text").innerHTML += message.charAt(i);
+  i++;
+  setTimeout(typing,50);
+ }
+}
+
+typing();
+
+// Photo slideshow
+let photos = ["photo1.jpg","photo2.jpg","photo3.jpg"];
+let index = 0;
+
+setInterval(()=>{
+ index = (index + 1) % photos.length;
+ document.getElementById("photo").src = photos[index];
+},3000);
+
+// Floating hearts
+setInterval(()=>{
+ let heart = document.createElement("div");
+ heart.className="heart";
+ heart.innerHTML="❤️";
+ heart.style.left=Math.random()*100+"vw";
+ heart.style.fontSize=(20+Math.random()*30)+"px";
+ document.body.appendChild(heart);
+
+ setTimeout(()=>{
+   heart.remove();
+ },6000);
+
+},500);
+
+</script>
+
+</body>
+</html>
+```
